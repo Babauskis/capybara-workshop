@@ -1,5 +1,5 @@
 $LOAD_PATH << File.dirname(__FILE__)
-
+##### Sandis Babauskis ########
 require 'capybara/cucumber'
 require 'capybara-screenshot/cucumber'
 require 'site_prism'
