@@ -1,10 +1,14 @@
 Feature: Demo Feature
 
-    Scenario: Open SignUp Page
-        Given I am on Appimation home page
-        When I open Try now
-        Then I close Try now
+    Scenario: I can fill in sign up form
+        Given I am on Apimation home page
+        When I open Sign up form
+        Then I fill in sign up required information - "sandis@gmail.com", "Parole123", "Parole123" and "capybara_project"
+        And I close sign up form
 
-    Scenario: I can send contact us message
-        Given I am on Appimation home page
-        When I enter "lalalalla" and "namemname" in name in contact us
+    Scenario: I can fill in login form and validate an incorrect input
+        Given I am on Apimation home page
+        When I open Login form
+        Then I fill in log in required information - "sandis@gmail.com" and "Parole123"
+        When I try to log in
+        Then Check if incorrect data error returned
