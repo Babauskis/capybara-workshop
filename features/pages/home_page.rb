@@ -1,52 +1,32 @@
 class HomePage < BasePage
     attr_accessor :button_start
   def initialize
-    @button_start = Element.new(:css, '#start_button')
-    @form_sign_up = Element.new(:css, '#signup')
-    @input_name_contact_us = Element.new(:css, '#name')
-    @button_sign_up = Element.new(:css, '#signup-b')
+    #Apimation home page element initialization
+    @button_log_in = Element.new(:css, "#login-b")
+    @button_sign_up = Element.new(:css, "#signup-b")
+    #Sign up form element initialization
+    @form_sign_up = Element.new(:css, "#signup")
     @input_email_sign_up = Element.new(:css, "#signup input[type='email']")
     @input_password_sign_up = Element.new(:css, "input[name='password1']")
     @input_repassword_sign_up= Element.new(:css, "input[name='password2']")
     @input_project_name_sign_up= Element.new(:css, "input[name='project_name']")
-    @button_close_sign_up = Element.new(:css, '#signup .closecross')
-    
-    @button_log_in = Element.new(:css, '#login-b')
+    @button_close_sign_up = Element.new(:css, "#signup .closecross")
+    #Log in form element initialization
     @form_log_in = Element.new(:css, '#login')
     @input_email_log_in = Element.new(:css, "#login input[name='login']")
     @input_password_log_in = Element.new(:css, "input[name='password']")
-    @button_log_in_form = Element.new(:css, '.button-block')
-
+    @button_log_in_form = Element.new(:css, ".button-block")
+    @error_msg_log_in = Element.new(:css, "form[action='/login'] .alert-danger .errorText")
   end
 
   def isVisible
-    @button_start.isVisible
-    @input_name_contact_us.isVisible
     @button_sign_up.isVisible
-
+    @button_log_in.isVisible
   end
 
   def load
     visit('/legacy')
   end
-
-  # def openTryNow
-  #   @button_start.click
-  #   @form_sign_up.isVisible
-  #   @button_close_try_now.isVisible
-  # end
-
-  # def closeTryNow
-  #   @button_close_try_now.click
-  # end
-
-  # def enterName(name)
-  #   @input_name_contact_us.send_keys(name)
-  # end
-
-  # def clearName
-  #   @input_name_contact_us.clear
-  # end
 
   def openSignUp
     @button_sign_up.click
@@ -63,7 +43,9 @@ class HomePage < BasePage
 
   def closeSignUp
     @button_close_sign_up.click
-    @button_close_sign_up.isVisible
+    if @button_close_sign_up.visible?
+      raise "Sign up view is visible"
+    end  
   end
 
   def openLogIn
@@ -79,4 +61,8 @@ class HomePage < BasePage
   def selectLogin
     @button_log_in_form.click
   end
+
+  def errorLogInMsgVisible
+    @error_msg_log_in.visible?
+  end 
 end

@@ -28,7 +28,5 @@ When(/^I try to log in/) do
 end
 
 Then(/^Check if incorrect data error returned/) do
-  # unless find(:css, '.alert-success + div .errorText').visible?
-  #   raise "error not visible"
-  # end  
+  @pages.page_home.errorLogInMsgVisible
 end
